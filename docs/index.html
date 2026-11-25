@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Argue — practise being pushed back on</title>
+<meta name="description" content="Rehearse a high-stakes conversation against a counterparty with a hidden goal, and build the strongest honest case against your own position. Offline, no key, no model.">
+<meta name="theme-color" content="#101418">
+<style>
+  :root{--bg:#f6f5f2;--panel:#fff;--ink:#14181d;--muted:#5d666f;--line:#d9d6cf;--accent:#7a2f3f}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+  main{max-width:780px;margin:0 auto;padding:48px 20px 64px}
+  h1{font-size:34px;line-height:1.15;letter-spacing:-.02em;margin:0 0 10px}
+  .lede{font-size:18px;color:var(--muted);margin:0 0 26px}
+  .cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;padding:12px 20px;border-radius:9px}
+  .status{margin:26px 0;padding:14px 16px;border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:9px;background:var(--panel);font-size:14px}
+  .status b{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:4px}
+  h2{font-size:17px;margin:30px 0 8px}
+  ul{padding-left:20px}li{margin:4px 0}
+  code{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:13px;background:#eeede9;padding:1px 5px;border-radius:4px}
+  table{border-collapse:collapse;width:100%;font-size:14px;margin-top:8px}
+  th,td{text-align:left;border-bottom:1px solid var(--line);padding:7px 8px;vertical-align:top}
+  th{color:var(--muted);font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.06em}
+  footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+  a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+  <h1>Argue</h1>
+  <p class="lede">Practise being pushed back on. One half is a counterparty with a hidden goal and a script; the other is the
+  strongest honest case against your own position, with a record of how your confidence moved.</p>
+
+  <a class="cta" href="play/index.html">Open Argue</a>
+
+  <div class="status">
+    <b>Status</b>
+    Built and working offline: three bundled scenario packs (US student visa, campus placement, rent negotiation) with a hidden
+    goal each; difficulty 1–3, where 2 and 3 push back on your previous answer instead of moving on; a scorecard that quotes a
+    sentence you actually said, names an opening you did not take, counts filler words and rewrites your weakest answer; and a
+    steelman with a confidence changelog.
+    <br><b>Release</b>: Windows EXE, Android APK and Linux binary, built from this source in CI — <a href="https://github.com/drsamonline/app-argue/releases/tag/app-latest">app-latest</a>.
+    <br><b>Not built</b>: the adaptive AI counterparty. The Rehearsal prompt asks for an LLM that improvises; there is no model
+    or key here, so the counterparty is a bundled script and a rule — and the app says so rather than pretending a model is in the room.
+  </div>
+
+  <h2>What it does</h2>
+  <ul>
+    <li>Puts you across from a named counterparty whose goal is hidden from the room: to find out whether you intend to come back, to fill the role at the lowest CTC, to hold the rent at his floor.</li>
+    <li>Asks the pack's questions, and at difficulty 2 and 3 pushes back on your last answer, quoting a word you used.</li>
+    <li>Scores the session from the transcript only: a sentence you actually said, an opening you missed, filler words counted, your weakest answer rewritten.</li>
+    <li>Builds the strongest honest case against a claim, from seven bundled argument moves.</li>
+    <li>Records your confidence before and after, and keeps a changelog of how your mind moved.</li>
+  </ul>
+
+  <h2>What it will not do</h2>
+  <ul>
+    <li><strong>Pretend a model is in the room.</strong> The counterparty is a script; the counter-case is a bank of moves. Both say so.</li>
+    <li><strong>Score an empty turn.</strong> Say nothing and nothing is scored — and the scorecard refuses to run on no answers.</li>
+    <li><strong>Count a restatement as opposition.</strong> A “counter-case” that repeats your own words is flagged as a restatement.</li>
+    <li><strong>Invent a grade.</strong> Every line of the scorecard is counted from your transcript; the rewrite is a filler-removal rule, not a model.</li>
+    <li><strong>Use a key or a network.</strong> No <code>fetch</code>, no endpoint; CSP <code>connect-src 'none'</code>.</li>
+  </ul>
+
+  <h2>When things go wrong</h2>
+  <table>
+    <tr><th>Case</th><th>What happens</th></tr>
+    <tr><td>Bad input</td><td>A rehearsal with no stated counterpart is refused — practising against nobody teaches nothing. An empty turn is refused rather than scored. A position with no claim is refused.</td></tr>
+    <tr><td>No network</td><td>Nothing changes: the packs, the moves and the transcript are on the device.</td></tr>
+    <tr><td>Storage full or unavailable</td><td>The session continues in memory and the app says the transcript will not be kept.</td></tr>
+    <tr><td>Corrupt saved state</td><td>Reported and offered for export. The app never opens a blank session in its place, which would look like a lost rehearsal.</td></tr>
+  </table>
+
+  <h2>How to run it</h2>
+  <ul>
+    <li><strong>Here</strong>: <a href="play/index.html">play/index.html</a>, or install it from your browser's menu.</li>
+    <li><strong>Offline file</strong>: open <code>docs/play/index.html</code> straight from disk.</li>
+    <li><strong>Tests</strong>: <code>node tests/self-tests.js</code> — the spec's countable “done means” is asserted there.</li>
+  </ul>
+
+  <footer>
+    PolyForm Noncommercial 1.0.0 · (c) 2026 Dr Sohil Momin ·
+    <a href="https://github.com/drsamonline/app-argue">source</a>
+  </footer>
+</main>
+</body>
+</html>

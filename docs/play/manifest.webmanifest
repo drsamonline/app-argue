@@ -1,0 +1,15 @@
+{
+  "name": "Argue — practise being pushed back on",
+  "short_name": "Argue",
+  "description": "Rehearse a high-stakes conversation against a counterparty with a hidden goal, and build the strongest honest case against your own position. Offline, no key, no model.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f2",
+  "theme_color": "#101418",
+  "lang": "en-IN",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
