@@ -142,12 +142,12 @@
     if (!card.ok) { setStatus("bad", card.reason); return; }
     state.card = card;
     state.sessions.push(state.session);
-    persist();
+    var saved = persist();
     els.scoreCard.hidden = false;
     els.exportSession.hidden = false;
     els.say.disabled = true;
     els.send.disabled = true;
-    renderScore(card);
+    renderScore(card);if (saved) 
     setStatus("ok", "Session scored. Every line of this scorecard is counted from your transcript.");
   }
 
@@ -204,9 +204,9 @@
     });
     if (!out.ok) { setStatus("bad", out.reason); return; }
     state.positions.push(out.entry);
-    persist();
+    var saved = persist();
     renderPositions();
-    els.recordNote.textContent = out.says;
+    els.recordNote.textContent = out.says;if (saved) 
     setStatus("ok", out.says);
   }
 
